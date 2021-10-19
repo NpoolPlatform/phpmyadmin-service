@@ -1,0 +1,7 @@
+commonLabels:
+  # app: phpmyadmin-service
+
+resources:
+- 01-ingress.yaml
+- 02-deployment.yml
+- 03-service.yml
