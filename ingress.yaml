@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: phpmyadmin-http-ingress
+  namespace: kube-system
+  annotations:
+    k8s.phpmyadmin.cn/displayName: phpmyadmin
+    k8s.phpmyadmin.cn/workload: phpmyadmin
+    nginx.org/websocket-services: "phpmyadmin"
+    nginx.com/sticky-cookie-services: "serviceName=phpmyadmin-service srv_id expires=1h path=/"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    kubernetes.io/ingress.class: "devops-vpn-nginx-internal"
+spec:
+  rules:
+  - host: phpmyadmin.internal-devops.development.npool.top
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: phpmyadmin-service
+          servicePort: phpmyadmin
