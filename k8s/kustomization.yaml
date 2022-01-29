@@ -2,6 +2,6 @@ commonLabels:
   # app: phpmyadmin-service
 
 resources:
-- 01-ingress.yaml
+- 01-traefik-vpn-ingress.yaml
 - 02-deployment.yml
 - 03-service.yml
