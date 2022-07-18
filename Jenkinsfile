@@ -28,7 +28,7 @@ pipeline {
           export MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
           envsubst < k8s/secret.yaml | kubectl apply -f -
         '''.stripIndent())
-        sh 'sed -i "s/phpmyadmin.internal-devops.development.npool.top/phpmyadmin.internal-devops.$TARGET_ENV.npool.top/g" k8s/01-traefik-vpn-ingress.yaml'
+        sh 'sed -i "s/phpmyadmin.development.npool.top/phpmyadmin.$TARGET_ENV.npool.top/g" k8s/01-traefik-vpn-ingress.yaml'
         sh 'kubectl apply -k k8s'
       }
     }
